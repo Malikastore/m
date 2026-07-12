@@ -9,8 +9,8 @@
   @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap');
 
   :root{
-    --bg:#0A0A0A; --surface:#151515; --surface-alt:#1D1D1D;
-    --red:#C79A4B; --red-dark:#8C6B2E; --text:#F5F5F3; --muted:#8F8F8F;
+    --bg:#0A0A0A; --surface:#000000; --surface-alt:#1D1D1D;
+    --red:#8C6B2E; --red-dark:#8C6B2E; --text:#F5F5F3; --muted:#8F8F8F;
     --border: rgba(255,255,255,.10);
   }
   *{ box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
@@ -21,12 +21,17 @@
     overflow:hidden;
   }
   ::-webkit-scrollbar{ display:none; }
-
-  #phone{
-    width:100%; max-width:430px; height:100vh; max-height:932px;
-    background:var(--bg); position:relative; overflow:hidden;
-    display:flex; flex-direction:column; border:1px solid var(--border);
-  }
+#phone{
+    width:100vw;
+    height:100dvh;
+    max-width:430px;
+    margin:auto;
+    background:var(--bg);
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+}
   @media(min-width:480px){ #phone{ border-radius:2rem; box-shadow:0 30px 80px rgba(0,0,0,.6);} }
 
   .screen{ display:none; flex-direction:column; flex:1; overflow:hidden; position:relative; }
@@ -71,22 +76,57 @@
   .choose-card{ position:relative; border-radius:1.2rem; overflow:hidden; height:10rem; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.4rem; }
   .choose-card i{ font-size:1.6rem; position:relative; z-index:2; }
   .choose-card b{ font-size:1.1rem; position:relative; z-index:2; }
-  .choose-card span{ font-size:.72rem; color:rgba(255,255,255,.6); position:relative; z-index:2; }
+  .choose-card span{ font-size:.72rem; color:rgba(238, 185, 11, 0.6); position:relative; z-index:2; }
 
   /* ---------- category grid ---------- */
   .cat-grid{ display:grid; grid-template-columns:1fr 1fr; gap:.75rem; padding:1rem; }
   .cat-tile{ display:flex; flex-direction:column; align-items:center; gap:.5rem; padding:1rem; }
-  .cat-tile .icon-circle{ width:44px; height:44px; border-radius:999px; background:rgba(228,20,28,.15); display:flex; align-items:center; justify-content:center; color:var(--red); }
+  .cat-tile .icon-circle{ width:44px; height:44px; border-radius:999px; background:rgba(205, 188, 9, 0.15); display:flex; align-items:center; justify-content:center; color:var(--red); }
   .cat-tile b{ font-size:.85rem; }
 
   /* ---------- product grid/card ---------- */
-  .prod-grid{ display:grid; grid-template-columns:1fr 1fr; gap:.75rem; padding:1rem; }
-  .prod-card{ overflow:hidden; }
-  .prod-img{ position:relative; height:7rem; background:var(--surface-alt); display:flex; align-items:center; justify-content:center; }
+  .prod-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+    padding:16px;
+    align-items:start;
+}
+ .prod-card{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    background:#181818;
+    border-radius:18px;
+    overflow:hidden;
+}
+
+.prod-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 35px rgba(0,0,0,.45);
+}
+ .prod-img{
+    width:100%;
+    height:180px;
+    overflow:hidden;
+}
+
+.prod-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.prod-card:hover .prod-img img{
+    transform:scale(1.08);
+}
   .prod-img i.center-icon{ position:relative; z-index:2; color:rgba(255,255,255,.3); font-size:1.3rem; }
   .fav-btn{ position:absolute; top:.5rem; left:.5rem; z-index:3; width:28px; height:28px; border-radius:999px; background:rgba(0,0,0,.5); display:flex; align-items:center; justify-content:center; color:#fff; border:none; }
   .fav-btn.active{ color:var(--red); }
-  .prod-body{ padding:.6rem; text-align:right; }
+ .prod-body{
+    padding:15px;
+    text-align:right;
+}
   .prod-body b{ font-size:.75rem; display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   .stars{ display:flex; gap:1px; direction:ltr; }
   .stars i{ font-size:10px; color:rgba(255,255,255,.2); }
@@ -163,6 +203,32 @@
   .tstep .dot.active{ background:var(--red); color:#fff; }
   .tstep small{ font-size:10px; margin-top:.4rem; color:rgba(255,255,255,.4); }
   .tstep small.active{ color:#fff; }
+  @media (max-width:430px){
+
+    #phone{
+        width:100vw;
+        height:100dvh;
+        border-radius:0;
+    }
+
+    .banner{
+        height:180px;
+    }
+
+    .prod-grid{
+        gap:10px;
+        padding:10px;
+    }
+
+    .prod-body b{
+        font-size:13px;
+    }
+
+    .prod-price{
+        font-size:15px;
+    }
+
+}
 </style>
 </head>
 <body>
@@ -181,7 +247,8 @@
   <section class="screen" id="screen-about">
     <div class="scroll">
       <div class="diag" style="position:relative; height:16rem; background:var(--surface); display:flex; align-items:center; justify-content:center;">
-        <img src="photo_2026-07-12_15-23-27.jpg"> height:
+        <img src="photo_2026-07-12_15-23-27.jpg"
+     style="width:150%; height:100%; object-fit:contain;">
       </div>
       <div class="fade-in" style="padding:2rem 1.5rem;">
         <p class="eyebrow">ATLAS SPORTS</p>
@@ -203,14 +270,14 @@
       <button class="card choose-card" onclick="go('store')">
         <div class="diag"></div>
         <i class="fa-solid fa-store"></i>
-        <b>STORE</b>
-        <span>تسوق جميع المنتجات الرياضية</span>
+         <img src="photo_2026-07-12_15-23-27.jpg"
+     style="width:150%; height:100%; object-fit:contain;">
       </button>
       <button class="card choose-card" onclick="go('academy-list')">
         <div class="diag"></div>
         <i class="fa-solid fa-graduation-cap"></i>
-        <b>ACADEMY</b>
-        <span>احجز مكانك في تدريبات Atlas Academy</span>
+         <img src="photo_2026-07-12_15-23-27.jpg"
+     style="width:150%; height:100%; object-fit:contain;">
       </button>
     </div>
   </section>
@@ -494,23 +561,10 @@ const CATEGORIES = [
 
 const PRODUCTS = [
   { id:"sh1", cat:"shoes", name:"حذاء هاندبول برو X1", price:1200, sizes:["40","41","42","43","44"], colors:["أسود","أحمر"], rating:4.7, reviews:34 },
-  { id:"sh2", cat:"shoes", name:"حذاء أطلس سبيد", price:950, sizes:["39","40","41","42"], colors:["أسود","أبيض"], rating:4.5, reviews:21 },
-  { id:"sh3", cat:"shoes", name:"حذاء تدريب خفيف", price:780, sizes:["38","39","40","41","42"], colors:["رمادي"], rating:4.2, reviews:12 },
-  { id:"je1", cat:"jerseys", name:"تيشيرت أطلس الأساسي", price:350, sizes:["S","M","L","XL"], colors:["أحمر","أسود"], rating:4.6, reviews:40 },
-  { id:"je2", cat:"jerseys", name:"تيشيرت مباريات Pro", price:480, sizes:["S","M","L","XL","XXL"], colors:["أبيض","أحمر"], rating:4.8, reviews:55 },
-  { id:"je3", cat:"jerseys", name:"تيشيرت تدريب Dry-Fit", price:300, sizes:["S","M","L"], colors:["أسود"], rating:4.3, reviews:18 },
-  { id:"sr1", cat:"shorts", name:"شورت هاندبول أساسي", price:280, sizes:["S","M","L","XL"], colors:["أسود","أحمر"], rating:4.4, reviews:22 },
-  { id:"sr2", cat:"shorts", name:"شورت تدريب خفيف", price:220, sizes:["S","M","L"], colors:["رمادي","أسود"], rating:4.1, reviews:9 },
-  { id:"ac1", cat:"accessories", name:"رباط راس أطلس", price:90, sizes:["مقاس واحد"], colors:["أحمر","أسود"], rating:4.5, reviews:14 },
-  { id:"ac2", cat:"accessories", name:"جوارب رياضية (3 أزواج)", price:150, sizes:["39-42","43-46"], colors:["أسود"], rating:4.6, reviews:27 },
-  { id:"ac3", cat:"accessories", name:"واقي كاحل", price:130, sizes:["S/M","L/XL"], colors:["أسود"], rating:4.3, reviews:8 },
-  { id:"bg1", cat:"bags", name:"شنطة رياضية أطلس", price:550, sizes:["مقاس واحد"], colors:["أسود/أحمر"], rating:4.7, reviews:31 },
-  { id:"bg2", cat:"bags", name:"حقيبة ظهر تدريب", price:420, sizes:["مقاس واحد"], colors:["أسود"], rating:4.4, reviews:16 },
-  { id:"bl1", cat:"balls", name:"كرة هاندبول رسمية", price:650, sizes:["مقاس 2","مقاس 3"], colors:["أزرق/أصفر"], rating:4.8, reviews:60 },
-  { id:"bl2", cat:"balls", name:"كرة تدريب للمبتدئين", price:380, sizes:["مقاس 1","مقاس 2"], colors:["أحمر"], rating:4.2, reviews:19 },
-  { id:"tr1", cat:"training", name:"طوق تدريب سرعة (10 قطع)", price:320, sizes:["مقاس واحد"], colors:["أصفر"], rating:4.5, reviews:11 },
-  { id:"tr2", cat:"training", name:"أقماع تدريب (20 قمع)", price:250, sizes:["مقاس واحد"], colors:["برتقالي"], rating:4.3, reviews:10 },
-  { id:"tr3", cat:"training", name:"حبل قفز احترافي", price:180, sizes:["مقاس واحد"], colors:["أسود/أحمر"], rating:4.6, reviews:25 },
+  { id:"sh1", cat:"jerseys", name:"حذاء هاندبول برو X1", price:1200, sizes:["40","41","42","43","44"], colors:["أسود","أحمر"], rating:4.7, reviews:34 },
+  { id:"sh1", cat:"shorts", name:"حذاء هاندبول برو X1", price:1200, sizes:["40","41","42","43","44"], colors:["أسود","أحمر"], rating:4.7, reviews:34 },
+
+
 ];
 
 const PROGRAMS = [
@@ -688,14 +742,7 @@ ${p.location}
 المواعيد:
 ${p.days} - ${p.time}
 
-الاسم:
-...........
 
-السن:
-...........
-
-رقم الهاتف:
-...........
 
 شكراً.`;
   window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
@@ -709,7 +756,7 @@ function renderStoreCategories(){
   el.innerHTML = CATEGORIES.map(c => `
     <button class="card cat-tile" onclick="openCategory('${c.id}')">
       <div class="icon-circle"><i class="fa-solid ${c.icon}"></i></div>
-      <b>${c.name}</b>
+      <b style="color:#C79A4B;">${c.name}</b>
     </button>
   `).join("");
 }
@@ -729,11 +776,13 @@ function productCardHtml(p){
   return `
     <div class="card prod-card">
       <button style="width:100%; background:none; border:none; padding:0; text-align:right;" onclick="openProduct('${p.id}')">
-        <div class="prod-img">
-          <div class="diag"></div>
-          <i class="fa-solid fa-circle-dot center-icon"></i>
-          <button class="fav-btn ${isFav ? "active" : ""}" onclick="event.stopPropagation(); toggleFav('${p.id}')"><i class="fa-solid fa-heart"></i></button>
-        </div>
+       <div class="prod-img">
+  <img src="${p.image}" alt="${p.name}">
+  <button class="fav-btn ${isFav ? "active" : ""}"
+      onclick="event.stopPropagation(); toggleFav('${p.id}')">
+      <i class="fa-solid fa-heart"></i>
+  </button>
+</div>
         <div class="prod-body">
           <b>${p.name}</b>
           <div style="display:flex; align-items:center; gap:4px; margin-top:.3rem;">
